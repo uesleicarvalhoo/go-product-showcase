@@ -1,0 +1,111 @@
+definitions:
+  domain.Product:
+    properties:
+      code:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      name:
+        minLength: 4
+        type: string
+      price:
+        type: number
+    required:
+    - code
+    - description
+    - name
+    - price
+    type: object
+  models.MessageJSON:
+    properties:
+      message:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /products/:
+    get:
+      description: List all products products
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Product'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: List Products
+      tags:
+      - Product
+    post:
+      description: Create a new product and return product details
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: Create product
+      tags:
+      - Product
+  /products/{id}:
+    get:
+      description: Get products details
+      parameters:
+      - description: the uuid of product
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: Get Product
+      tags:
+      - Product
+    post:
+      description: Update product data
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: Update product
+      tags:
+      - Product
+swagger: "2.0"
