@@ -5,8 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	fiberOtel "github.com/psmarcin/fiber-opentelemetry/pkg/fiber-otel"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/models"
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/trace"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/models"
 )
 
 // @Summary 	List Products

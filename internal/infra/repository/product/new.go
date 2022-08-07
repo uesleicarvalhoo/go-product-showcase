@@ -1,13 +1,17 @@
 package product
 
 import (
+	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain"
+	"github.com/uesleicarvalhoo/go-product-showcase/internal/infra/repository/crud"
 	"gorm.io/gorm"
 )
 
 type Repository struct {
-	db *gorm.DB
+	crud.Crud[Model, domain.Product]
 }
 
 func New(db *gorm.DB) Repository {
-	return Repository{db: db}
+	return Repository{
+		crud.New(db, toDomain, fromDomain),
+	}
 }

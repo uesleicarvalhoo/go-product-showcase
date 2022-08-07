@@ -7,7 +7,7 @@ import (
 	"github.com/google/uuid"
 	fiberOtel "github.com/psmarcin/fiber-opentelemetry/pkg/fiber-otel"
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/trace"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/models"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/models"
 )
 
 // Get product details

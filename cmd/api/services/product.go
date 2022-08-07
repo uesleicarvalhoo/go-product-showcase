@@ -3,7 +3,7 @@ package services
 import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/services/product"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/services/product"
 )
 
 type ProductService interface {

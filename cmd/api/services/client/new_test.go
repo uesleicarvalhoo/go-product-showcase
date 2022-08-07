@@ -2,12 +2,12 @@ package client_test
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/middleware"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/services"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/infra/broker"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/infra/database"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/infra/repository"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/middleware"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/services"
 )
 
 type Sut struct {
