@@ -44,6 +44,8 @@ func TestGetAllEndpoint(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, res.StatusCode)
 
+	defer res.Body.Close()
+
 	// Assert fields
 	var clients []domain.Client
 

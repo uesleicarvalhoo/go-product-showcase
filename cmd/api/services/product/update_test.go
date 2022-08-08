@@ -74,6 +74,8 @@ func TestUpdateEndpointError(t *testing.T) {
 			// Assert
 			assert.NoError(t, err)
 			assert.Equal(t, tc.expectedStatusCode, res.StatusCode)
+
+			res.Body.Close()
 		})
 	}
 }
@@ -117,6 +119,8 @@ func TestUpdateEndpoint(t *testing.T) {
 	// Assert
 	assert.NoError(t, err)
 	assert.Equal(t, http.StatusOK, res.StatusCode)
+
+	defer res.Body.Close()
 
 	// Assert fields
 	var product domain.Product

@@ -11,15 +11,12 @@ linters:
     - golint
     - interfacer
     - exhaustivestruct
-    # Not avaliable from go v1.18
-    - bodyclose
+    - ifshort
+    # Disabled becasue generics
     - contextcheck
-    - nilerr
-    - noctx
     - rowserrcheck
     - sqlclosecheck
     - structcheck
-    - tparallel
     - unparam
     - wastedassign
     # Only Disabled
