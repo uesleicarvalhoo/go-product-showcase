@@ -9,11 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fix
 
-- Fix swagger docs
-
-
-### Fix
-
 - Run lint and solve all problems
 
 ### Added
