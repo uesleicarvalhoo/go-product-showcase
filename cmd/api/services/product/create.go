@@ -1,4 +1,4 @@
-package client
+package product
 
 import (
 	"net/http"
@@ -7,24 +7,24 @@ import (
 	fiberOtel "github.com/psmarcin/fiber-opentelemetry/pkg/fiber-otel"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/dto"
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/trace"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/models"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/models"
 )
 
-// @Summary		Create client
-// @Description	Create a new client and return client details
+// @Summary		Create product
+// @Description	Create a new product and return product details
 // @Tags		Product
 // @Accepts		json
 // @Produce		json
-// Param		payload body dto.CreateClientPayload true
+// Param		payload body dto.CreateProductPayload true
 // @Success		201	{object} domain.Product
 // @Failure		422	{object} models.MessageJSON
 // @Failure		400	{object} models.MessageJSON
-// @Router		/clients/ [post].
+// @Router		/products/ [post].
 func (s Service) Create(c *fiber.Ctx) error {
-	ctx, span := trace.NewSpan(fiberOtel.FromCtx(c), "create-client")
+	ctx, span := trace.NewSpan(fiberOtel.FromCtx(c), "create-product")
 	defer span.End()
 
-	var payload dto.CreateClientPayload
+	var payload dto.CreateProductPayload
 	if err := c.BodyParser(&payload); err != nil {
 		trace.AddSpanError(span, err)
 

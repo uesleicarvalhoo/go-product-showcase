@@ -34,7 +34,7 @@ func TestUpdate(t *testing.T) {
 	product.Description = newDescription
 	product.Price = newValue
 
-	err = sut.Update(context.Background(), &product)
+	err = sut.Update(context.Background(), product)
 	assert.NoError(t, err)
 
 	// Assert

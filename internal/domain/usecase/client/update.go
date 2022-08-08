@@ -35,7 +35,7 @@ func (uc UseCase) Update(ctx context.Context, id uuid.UUID, payload dto.UpdateCl
 		updatedFields["address"] = updatedAdress
 	}
 
-	if err := uc.repository.Update(ctx, &client); err != nil {
+	if err := uc.repository.Update(ctx, client); err != nil {
 		return entity.Client{}, err
 	}
 

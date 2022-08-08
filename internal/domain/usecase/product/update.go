@@ -51,7 +51,7 @@ func (uc UseCase) Update(ctx context.Context, id uuid.UUID, payload dto.UpdatePr
 		updatedFields["image_url"] = payload.ImageURL
 	}
 
-	if err := uc.repository.Update(ctx, &product); err != nil {
+	if err := uc.repository.Update(ctx, product); err != nil {
 		return entity.Product{}, err
 	}
 

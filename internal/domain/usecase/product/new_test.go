@@ -1,6 +1,7 @@
 package product_test
 
 import (
+	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain/contracts"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain/usecase/product"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/infra/broker"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/infra/database"
@@ -10,7 +11,7 @@ import (
 type Sut struct {
 	uc         product.UseCase
 	repo       product.Repository
-	broker     product.Broker
+	broker     contracts.Broker
 	eventTopic string
 }
 

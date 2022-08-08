@@ -40,7 +40,7 @@ func TestUpdate(t *testing.T) {
 	client.Address.Street = newStreet
 	client.Address.City = newCity
 
-	err = sut.Update(context.Background(), &client)
+	err = sut.Update(context.Background(), client)
 	assert.NoError(t, err)
 
 	// Assert

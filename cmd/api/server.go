@@ -9,8 +9,8 @@ import (
 	_ "github.com/uesleicarvalhoo/go-product-showcase/docs"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain"
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/json"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/middleware"
-	"github.com/uesleicarvalhoo/go-product-showcase/web/api/services"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/middleware"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/services"
 )
 
 func NewServer(

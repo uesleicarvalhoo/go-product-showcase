@@ -15,9 +15,9 @@ func NewAuth(authServer string) fiber.Handler {
 	return func(c *fiber.Ctx) error {
 		ctx, span := trace.NewSpan(fiberOtel.FromCtx(c), "authorize")
 
-		auth := string(c.Request().Header.Peek("Authorization"))
+		h := string(c.Request().Header.Peek("Authorization"))
 
-		data, err := json.Encode(map[string]string{"authorization": auth, "path": c.Path()})
+		data, err := json.Encode(map[string]string{"token": h, "path": c.Path()})
 		if err != nil {
 			trace.AddSpanError(span, err)
 

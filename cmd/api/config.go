@@ -14,8 +14,10 @@ type ServerConfig struct {
 	OtelURL        string `env:"OTEL_URL,default=http://localhost:14268/api/traces"`
 	// Topic to send all product events
 	BrokerProductTopic string `env:"BROKER_PRODUCT_TOPIC,default=products"`
+	// Topic to send all client events
+	BrokerClientTopic string `env:"BROKER_CLIENT_TOPIC,default=clients"`
 	// Authentication endpoint
-	AuthEndpoint string `env:"AUTHENTICATION_ENDPOINT,default=http://localhost:5000/authorizate"`
+	AuthEndpoint string `env:"AUTHENTICATION_ENDPOINT,default=http://localhost:8000/v1/auth/authorize"`
 
 	Database database.Config
 	Broker   broker.Config

@@ -1,7 +1,7 @@
 COVERAGE_OUTPUT=coverage.output
 COVERAGE_HTML=coverage.html
 GO_PACKAGES=internal
-GO_ENTRYPOINT=web/api/*.go
+GO_ENTRYPOINT=cmd/api/*.go
 
 ## @ Help
 .PHONY: help
@@ -13,7 +13,7 @@ help: ## Display this help
 run: docs/* ## Run app
 	@DEBUG=TRUE go run $(GO_ENTRYPOINT)
 
-docs/*: $(wildcard web/api/routers/*/*.go) ## Generate swagger docs
+docs/*: $(wildcard cmd/api/routers/*/*.go) ## Generate swagger docs
 	@swag init -g $(GO_ENTRYPOINT)
 
 compose:  ## Init containers with dev dependencies

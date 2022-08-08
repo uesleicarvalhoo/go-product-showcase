@@ -11,9 +11,8 @@ import (
 
 type (
 	Client           = entity.Client
-	ClientAdress     = entity.Address
+	ClientAdress     = entity.ClientAddress
 	ClientRepository = client.Repository
-	ClientBroker     = client.Broker
 )
 
 type ClientUseCase interface {
