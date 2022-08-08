@@ -1,6 +1,6 @@
 COVERAGE_OUTPUT=coverage.output
 COVERAGE_HTML=coverage.html
-GO_PACKAGES=internal
+GO_PACKAGES=cmd internal pkg
 GO_ENTRYPOINT=cmd/api/*.go
 
 ## @ Help
@@ -34,7 +34,7 @@ lint:
 	@golangci-lint run -v
 
 format:
-	@gofumpt -w -e -l $(GO_PACKAGES)
+	@gofumpt -e -l -w $(GO_PACKAGES)
 
 ## @ Tests
 .PHONY: test coverage

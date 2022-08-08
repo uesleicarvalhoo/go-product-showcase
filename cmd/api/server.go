@@ -6,11 +6,11 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/gofiber/swagger"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/middleware"
+	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/services"
 	_ "github.com/uesleicarvalhoo/go-product-showcase/docs"
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain"
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/json"
-	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/middleware"
-	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/services"
 )
 
 func NewServer(

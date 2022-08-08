@@ -36,7 +36,7 @@ func NewProvider(config ProviderConfig) (Provider, error) {
 
 	exp, err := jaeger.New(jaeger.WithCollectorEndpoint(jaeger.WithEndpoint(config.Endpoint)))
 	if err != nil {
-		return Provider{}, nil
+		return Provider{}, err
 	}
 
 	prv := tracesdk.NewTracerProvider(

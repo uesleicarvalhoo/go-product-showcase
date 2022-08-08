@@ -48,6 +48,7 @@ func TestCreateEndpointError(t *testing.T) {
 			// Assert
 			assert.NoError(t, err)
 			assert.Equal(t, tc.expectedStatusCode, res.StatusCode)
+			res.Body.Close()
 		})
 	}
 }
@@ -93,6 +94,7 @@ func TestCreateEndpoint(t *testing.T) {
 
 			// Assert
 			assert.NoError(t, err)
+			defer res.Body.Close()
 			assert.Equal(t, tc.expectedStatusCode, res.StatusCode)
 
 			// Assert fields
