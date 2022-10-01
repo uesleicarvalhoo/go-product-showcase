@@ -18,6 +18,17 @@ definitions:
     - name
     - phone
     type: object
+  domain.Pagination-domain_Client:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/entity.Client'
+        type: array
+      page:
+        type: integer
+      total:
+        type: integer
+    type: object
   domain.Product:
     properties:
       category:
@@ -41,6 +52,25 @@ definitions:
     - description
     - name
     - price
+    type: object
+  entity.Client:
+    properties:
+      address:
+        $ref: '#/definitions/entity.ClientAddress'
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        minLength: 4
+        type: string
+      phone:
+        type: string
+    required:
+    - address
+    - email
+    - name
+    - phone
     type: object
   entity.ClientAddress:
     properties:
@@ -72,9 +102,7 @@ paths:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/domain.Client'
-            type: array
+            $ref: '#/definitions/domain.Pagination-domain_Client'
         "400":
           description: Bad Request
           schema:

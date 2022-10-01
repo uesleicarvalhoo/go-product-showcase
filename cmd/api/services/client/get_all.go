@@ -6,6 +6,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	fiberOtel "github.com/psmarcin/fiber-opentelemetry/pkg/fiber-otel"
 	"github.com/uesleicarvalhoo/go-product-showcase/cmd/api/models"
+	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain"
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/trace"
 )
 
@@ -14,7 +15,7 @@ import (
 // @Tags 		Client
 // @Accepts 	json
 // @Produce 	json
-// @Success 	200 		{object} 	[]domain.Client
+// @Success 	200 		{object} 	domain.Pagination[domain.Client]
 // @Failure 	400 		{object} 	models.MessageJSON
 // @Router 		/clients/ [get].
 func (s Service) ListProducts(c *fiber.Ctx) error {
@@ -28,5 +29,9 @@ func (s Service) ListProducts(c *fiber.Ctx) error {
 		return c.Status(http.StatusBadRequest).JSON(models.NewErrorMsg(err))
 	}
 
-	return c.Status(http.StatusOK).JSON(clients)
+	return c.Status(http.StatusOK).JSON(domain.Pagination[domain.Client]{
+		Items: clients,
+		Page:  1,
+		Total: len(clients),
+	})
 }

@@ -14,7 +14,7 @@ run: swagger ## Run app
 	@DEBUG=TRUE go run $(GO_ENTRYPOINT)
 
 docs/*: $(wildcard cmd/api/server.go) $(wildcard cmd/api/services/*.go) $(wildcard cmd/api/services/*/*.go)
-	@swag init -generalInfo api/router.go -output ./docs/swagger
+	@swag init -generalInfo $(GO_ENTRYPOINT) -output ./docs
 
 swagger: docs/*  ## Generate Swagger content
 
