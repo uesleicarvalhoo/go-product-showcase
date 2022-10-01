@@ -16,6 +16,130 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/clients/": {
+            "get": {
+                "description": "List all clients clients",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Client"
+                ],
+                "summary": "List Clients",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/domain.Client"
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.MessageJSON"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new client and return client details",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Create client",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/domain.Client"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.MessageJSON"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/models.MessageJSON"
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/{id}": {
+            "get": {
+                "description": "Get clients details",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Get Client",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "the uuid of client",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/domain.Client"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.MessageJSON"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Update client data",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Client"
+                ],
+                "summary": "Update client",
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/domain.Client"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.MessageJSON"
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "$ref": "#/definitions/models.MessageJSON"
+                        }
+                    }
+                }
+            }
+        },
         "/products/": {
             "get": {
                 "description": "List all products products",
@@ -142,19 +266,19 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "domain.Product": {
+        "domain.Client": {
             "type": "object",
             "required": [
-                "code",
-                "description",
+                "address",
+                "email",
                 "name",
-                "price"
+                "phone"
             ],
             "properties": {
-                "code": {
-                    "type": "string"
+                "address": {
+                    "$ref": "#/definitions/entity.ClientAddress"
                 },
-                "description": {
+                "email": {
                     "type": "string"
                 },
                 "id": {
@@ -164,8 +288,61 @@ const docTemplate = `{
                     "type": "string",
                     "minLength": 4
                 },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "domain.Product": {
+            "type": "object",
+            "required": [
+                "category",
+                "code",
+                "description",
+                "name",
+                "price"
+            ],
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 4
+                },
                 "price": {
                     "type": "number"
+                }
+            }
+        },
+        "entity.ClientAddress": {
+            "type": "object",
+            "required": [
+                "city",
+                "street",
+                "zip_code"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "zip_code": {
+                    "type": "string"
                 }
             }
         },

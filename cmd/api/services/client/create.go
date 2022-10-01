@@ -12,11 +12,11 @@ import (
 
 // @Summary		Create client
 // @Description	Create a new client and return client details
-// @Tags		Product
+// @Tags		Client
 // @Accepts		json
 // @Produce		json
 // Param		payload body dto.CreateClientPayload true
-// @Success		201	{object} domain.Product
+// @Success		201	{object} domain.Client
 // @Failure		422	{object} models.MessageJSON
 // @Failure		400	{object} models.MessageJSON
 // @Router		/clients/ [post].

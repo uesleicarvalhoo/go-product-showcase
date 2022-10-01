@@ -9,12 +9,14 @@ help: ## Display this help
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make [target]\033[36m\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "\033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 ## @ Application
-.PHONY: run compose
-run: docs/* ## Run app
+.PHONY: run compose swagger
+run: swagger ## Run app
 	@DEBUG=TRUE go run $(GO_ENTRYPOINT)
 
-docs/*: $(wildcard cmd/api/routers/*/*.go) ## Generate swagger docs
-	@swag init -g $(GO_ENTRYPOINT)
+docs/*: $(wildcard cmd/api/server.go) $(wildcard cmd/api/services/*.go) $(wildcard cmd/api/services/*/*.go)
+	@swag init -generalInfo api/router.go -output ./docs/swagger
+
+swagger: docs/*  ## Generate Swagger content
 
 compose:  ## Init containers with dev dependencies
 	@docker compose build && docker compose up -d

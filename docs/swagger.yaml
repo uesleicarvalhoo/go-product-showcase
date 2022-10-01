@@ -1,11 +1,34 @@
 definitions:
+  domain.Client:
+    properties:
+      address:
+        $ref: '#/definitions/entity.ClientAddress'
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        minLength: 4
+        type: string
+      phone:
+        type: string
+    required:
+    - address
+    - email
+    - name
+    - phone
+    type: object
   domain.Product:
     properties:
+      category:
+        type: string
       code:
         type: string
       description:
         type: string
       id:
+        type: string
+      image_url:
         type: string
       name:
         minLength: 4
@@ -13,10 +36,24 @@ definitions:
       price:
         type: number
     required:
+    - category
     - code
     - description
     - name
     - price
+    type: object
+  entity.ClientAddress:
+    properties:
+      city:
+        type: string
+      street:
+        type: string
+      zip_code:
+        type: string
+    required:
+    - city
+    - street
+    - zip_code
     type: object
   models.MessageJSON:
     properties:
@@ -26,6 +63,88 @@ definitions:
 info:
   contact: {}
 paths:
+  /clients/:
+    get:
+      description: List all clients clients
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.Client'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: List Clients
+      tags:
+      - Client
+    post:
+      description: Create a new client and return client details
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Client'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: Create client
+      tags:
+      - Client
+  /clients/{id}:
+    get:
+      description: Get clients details
+      parameters:
+      - description: the uuid of client
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.Client'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: Get Client
+      tags:
+      - Client
+    post:
+      description: Update client data
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.Client'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/models.MessageJSON'
+      summary: Update client
+      tags:
+      - Client
   /products/:
     get:
       description: List all products products

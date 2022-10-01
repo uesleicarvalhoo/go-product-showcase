@@ -31,9 +31,13 @@ O [Makefile](https://www.gnu.org/software/make/) contem alguns scripts para inic
 Para saber quais sãos os comandos disponíveis, execute `make help` no terminal, você verá algo como:
 
 ``` bash
+Usage:
+  make [target]
+
 Targets:
 help        Display this help
 run         Run app
+swagger     Generate Swagger content
 compose     Init containers with dev dependencies
 release     Create a new release
 test        Run tests of project
