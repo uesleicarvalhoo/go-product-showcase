@@ -1,5 +1,10 @@
-on: pull_request
-name: Changelog Reminder
+name: check change log
+
+on: 
+  release:
+    types:
+      - published
+
 jobs:
   remind:
     name: Changelog Reminder

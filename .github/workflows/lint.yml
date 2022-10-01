@@ -1,6 +1,9 @@
-name: golangci-lint
+name: run golangci-lint
 
-on: push
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs:
   golangci:
