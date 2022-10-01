@@ -10,7 +10,6 @@ import (
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/trace"
 )
 
-// Get product details
 // @Summary 	Get Client
 // @Description Get clients details
 // @Tags 		Client

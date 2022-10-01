@@ -9,12 +9,12 @@ import (
 	"github.com/uesleicarvalhoo/go-product-showcase/pkg/trace"
 )
 
-// @Summary 	List Products
+// @Summary 	List Clients
 // @Description List all clients clients
-// @Tags 		Product
+// @Tags 		Client
 // @Accepts 	json
 // @Produce 	json
-// @Success 	200 		{object} 	[]domain.Product
+// @Success 	200 		{object} 	[]domain.Client
 // @Failure 	400 		{object} 	models.MessageJSON
 // @Router 		/clients/ [get].
 func (s Service) ListProducts(c *fiber.Ctx) error {
