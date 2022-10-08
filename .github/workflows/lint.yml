@@ -16,7 +16,7 @@ jobs:
         uses: golangci/golangci-lint-action@v2
 
         with:
-          version: latest
+          version: "v1.48.0"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           skip-pkg-cache: false
           skip-build-cache: false

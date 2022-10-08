@@ -16,8 +16,8 @@ import (
 // @Tags		Product
 // @Accepts		json
 // @Produce		json
-// Param		id		path string true	"payload to update product data"
-// Param		payload body dto.UpdateProductPayload true	"fields to update, empty fields will be ignored"
+// @Param		id		path string true	"payload to update product data"
+// @Param		payload body dto.UpdateProductPayload true	"fields to update, empty fields will be ignored"
 // @Success		201	{object} domain.Product
 // @Failure		422	{object} models.MessageJSON
 // @Failure		400	{object} models.MessageJSON

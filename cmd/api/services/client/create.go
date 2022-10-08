@@ -15,7 +15,7 @@ import (
 // @Tags		Client
 // @Accepts		json
 // @Produce		json
-// Param		payload body dto.CreateClientPayload true
+// @Param		payload body dto.CreateClientPayload true "data to create a new client"
 // @Success		201	{object} domain.Client
 // @Failure		422	{object} models.MessageJSON
 // @Failure		400	{object} models.MessageJSON

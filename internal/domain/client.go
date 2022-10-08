@@ -18,7 +18,7 @@ type (
 type ClientUseCase interface {
 	Create(ctx context.Context, payload dto.CreateClientPayload) (Client, error)
 	Fetch(ctx context.Context, id uuid.UUID) (Client, error)
-	FetchAll(ctx context.Context) ([]Client, error)
+	FetchAll(ctx context.Context, page, limit int) ([]Client, error)
 	Update(ctx context.Context, id uuid.UUID, payload dto.UpdateClientPayload) (entity.Client, error)
 }
 

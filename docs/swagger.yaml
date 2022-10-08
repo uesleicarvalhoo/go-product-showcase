@@ -26,8 +26,6 @@ definitions:
         type: array
       page:
         type: integer
-      total:
-        type: integer
     type: object
   domain.Product:
     properties:
@@ -52,6 +50,74 @@ definitions:
     - description
     - name
     - price
+    type: object
+  dto.AddressPayload:
+    properties:
+      city:
+        type: string
+      street:
+        type: string
+      zip_code:
+        type: string
+    type: object
+  dto.CreateClientPayload:
+    properties:
+      address:
+        $ref: '#/definitions/dto.AddressPayload'
+      email:
+        type: string
+      name:
+        minLength: 4
+        type: string
+      phone:
+        type: string
+    required:
+    - address
+    - email
+    - name
+    - phone
+    type: object
+  dto.CreateProductPayload:
+    properties:
+      category:
+        type: string
+      code:
+        type: string
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+    type: object
+  dto.UpdateClientPayload:
+    properties:
+      address:
+        $ref: '#/definitions/dto.AddressPayload'
+      email:
+        type: string
+      name:
+        minLength: 4
+        type: string
+      phone:
+        type: string
+    type: object
+  dto.UpdateProductPayload:
+    properties:
+      category:
+        type: string
+      code:
+        type: string
+      description:
+        type: string
+      image_url:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
     type: object
   entity.Client:
     properties:
@@ -96,6 +162,15 @@ paths:
   /clients/:
     get:
       description: List all clients clients
+      parameters:
+      - description: page number
+        in: query
+        name: page
+        type: integer
+      - description: items per page
+        in: query
+        name: limit
+        type: integer
       produces:
       - application/json
       responses:
@@ -112,6 +187,13 @@ paths:
       - Client
     post:
       description: Create a new client and return client details
+      parameters:
+      - description: data to create a new client
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateClientPayload'
       produces:
       - application/json
       responses:
@@ -155,6 +237,18 @@ paths:
       - Client
     post:
       description: Update client data
+      parameters:
+      - description: payload to update client data
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: fields to update, empty fields will be ignored
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateClientPayload'
       produces:
       - application/json
       responses:
@@ -176,6 +270,15 @@ paths:
   /products/:
     get:
       description: List all products products
+      parameters:
+      - description: page number
+        in: query
+        name: page
+        type: integer
+      - description: items per page
+        in: query
+        name: limit
+        type: integer
       produces:
       - application/json
       responses:
@@ -194,6 +297,13 @@ paths:
       - Product
     post:
       description: Create a new product and return product details
+      parameters:
+      - description: data to create a new product
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.CreateProductPayload'
       produces:
       - application/json
       responses:
@@ -237,6 +347,18 @@ paths:
       - Product
     post:
       description: Update product data
+      parameters:
+      - description: payload to update product data
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: fields to update, empty fields will be ignored
+        in: body
+        name: payload
+        required: true
+        schema:
+          $ref: '#/definitions/dto.UpdateProductPayload'
       produces:
       - application/json
       responses:

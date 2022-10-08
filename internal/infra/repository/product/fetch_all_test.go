@@ -15,10 +15,14 @@ func TestFetchAll(t *testing.T) {
 	tests := []struct {
 		scenario        string
 		dbProductsCount int
+		page            int
+		limit           int
 	}{
 		{
 			scenario:        "should return all db products",
 			dbProductsCount: 3,
+			page:            1,
+			limit:           3,
 		},
 	}
 
@@ -51,7 +55,7 @@ func TestFetchAll(t *testing.T) {
 			}
 
 			// Action
-			products, err := sut.FetchAll(context.Background())
+			products, err := sut.FetchAll(context.Background(), tc.page, tc.limit)
 
 			// Assert
 			assert.NoError(t, err)
