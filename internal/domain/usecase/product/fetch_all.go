@@ -6,6 +6,6 @@ import (
 	"github.com/uesleicarvalhoo/go-product-showcase/internal/domain/entity"
 )
 
-func (uc UseCase) FetchAll(ctx context.Context) ([]entity.Product, error) {
-	return uc.repository.FetchAll(ctx)
+func (uc UseCase) FetchAll(ctx context.Context, page, limit int) ([]entity.Product, error) {
+	return uc.repository.FetchAll(ctx, page, limit)
 }

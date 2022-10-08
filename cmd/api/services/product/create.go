@@ -15,7 +15,7 @@ import (
 // @Tags		Product
 // @Accepts		json
 // @Produce		json
-// Param		payload body dto.CreateProductPayload true
+// @Param		payload body dto.CreateProductPayload true  "data to create a new product"
 // @Success		201	{object} domain.Product
 // @Failure		422	{object} models.MessageJSON
 // @Failure		400	{object} models.MessageJSON

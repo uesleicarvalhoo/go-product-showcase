@@ -18,7 +18,7 @@ type (
 type ProductUseCase interface {
 	Create(ctx context.Context, payload dto.CreateProductPayload) (Product, error)
 	Fetch(ctx context.Context, id uuid.UUID) (Product, error)
-	FetchAll(ctx context.Context) ([]Product, error)
+	FetchAll(ctx context.Context, limit, page int) ([]Product, error)
 	Update(ctx context.Context, id uuid.UUID, payload dto.UpdateProductPayload) (entity.Product, error)
 }
 

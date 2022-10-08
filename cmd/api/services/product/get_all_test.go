@@ -47,10 +47,11 @@ func TestGetAllEndpoint(t *testing.T) {
 	defer res.Body.Close()
 
 	// Assert fields
-	var products []domain.Product
-
-	err = json.NewDecoder(res.Body).Decode(&products)
+	var response domain.Pagination[domain.Product]
+	err = json.NewDecoder(res.Body).Decode(&response)
 	assert.NoError(t, err)
+
+	products := response.Items
 
 	assert.Len(t, products, 1)
 	assert.Equal(t, existingProduct.ID, products[0].ID)

@@ -26,6 +26,20 @@ const docTemplate = `{
                     "Client"
                 ],
                 "summary": "List Clients",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "items per page",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -50,6 +64,17 @@ const docTemplate = `{
                     "Client"
                 ],
                 "summary": "Create client",
+                "parameters": [
+                    {
+                        "description": "data to create a new client",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateClientPayload"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Created",
@@ -115,6 +140,24 @@ const docTemplate = `{
                     "Client"
                 ],
                 "summary": "Update client",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "payload to update client data",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "fields to update, empty fields will be ignored",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateClientPayload"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Created",
@@ -147,6 +190,20 @@ const docTemplate = `{
                     "Product"
                 ],
                 "summary": "List Products",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "items per page",
+                        "name": "limit",
+                        "in": "query"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -174,6 +231,17 @@ const docTemplate = `{
                     "Product"
                 ],
                 "summary": "Create product",
+                "parameters": [
+                    {
+                        "description": "data to create a new product",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.CreateProductPayload"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Created",
@@ -239,6 +307,24 @@ const docTemplate = `{
                     "Product"
                 ],
                 "summary": "Update product",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "payload to update product data",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "fields to update, empty fields will be ignored",
+                        "name": "payload",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateProductPayload"
+                        }
+                    }
+                ],
                 "responses": {
                     "201": {
                         "description": "Created",
@@ -301,9 +387,6 @@ const docTemplate = `{
                 },
                 "page": {
                     "type": "integer"
-                },
-                "total": {
-                    "type": "integer"
                 }
             }
         },
@@ -335,6 +418,108 @@ const docTemplate = `{
                 "name": {
                     "type": "string",
                     "minLength": 4
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "dto.AddressPayload": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "street": {
+                    "type": "string"
+                },
+                "zip_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateClientPayload": {
+            "type": "object",
+            "required": [
+                "address",
+                "email",
+                "name",
+                "phone"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.AddressPayload"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 4
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CreateProductPayload": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                }
+            }
+        },
+        "dto.UpdateClientPayload": {
+            "type": "object",
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/dto.AddressPayload"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "minLength": 4
+                },
+                "phone": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UpdateProductPayload": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "image_url": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
                 },
                 "price": {
                     "type": "number"

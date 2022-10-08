@@ -18,10 +18,15 @@ func (c Crud[Model, Entity]) Fetch(ctx context.Context, id uuid.UUID) (Entity, e
 	return c.toDomain(m), nil
 }
 
-func (c Crud[Model, Entity]) FetchAll(ctx context.Context) ([]Entity, error) {
+func (c Crud[Model, Entity]) FetchAll(ctx context.Context, page, limit int) ([]Entity, error) {
 	var models []Model
 
-	if tx := c.db.WithContext(ctx).Find(&models); tx.Error != nil {
+	offset := 0
+	if page > 1 {
+		offset = (page - 1) * limit
+	}
+
+	if tx := c.db.WithContext(ctx).Offset(offset).Limit(limit).Find(&models); tx.Error != nil {
 		return nil, tx.Error
 	}
 

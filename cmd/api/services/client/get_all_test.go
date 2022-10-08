@@ -34,7 +34,7 @@ func TestGetAllEndpoint(t *testing.T) {
 	assert.NoError(t, err)
 
 	// Action
-	endpoint, err := url.Parse("/clients")
+	endpoint, err := url.Parse("/clients?page=1&limit=1")
 	assert.NoError(t, err)
 
 	req := httptest.NewRequest(http.MethodGet, endpoint.String(), nil)
@@ -47,11 +47,14 @@ func TestGetAllEndpoint(t *testing.T) {
 	defer res.Body.Close()
 
 	// Assert fields
-	var clients []domain.Client
+	var response domain.Pagination[domain.Client]
 
-	err = json.NewDecoder(res.Body).Decode(&clients)
+	err = json.NewDecoder(res.Body).Decode(&response)
 	assert.NoError(t, err)
 
+	clients := response.Items
+
+	assert.Equal(t, response.Page, 1)
 	assert.Len(t, clients, 1)
 	assert.Equal(t, existingClient.ID, clients[0].ID)
 	assert.Equal(t, existingClient.Name, clients[0].Name)
